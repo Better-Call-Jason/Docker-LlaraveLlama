@@ -1,0 +1,12 @@
+# Open .dockerignore in your text editor and add:
+vendor/
+node_modules/
+.env
+*.log
+.docker/
+storage/*.key
+.git
+.gitignore
+README.md
+docker-compose*
+preview.gif
