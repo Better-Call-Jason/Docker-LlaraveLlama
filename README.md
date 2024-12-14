@@ -32,7 +32,7 @@ mkdir llaravellama && cd llaravellama
 
 3. Create a docker-compose.yml file:
 ```bash
-curl -O https://raw.githubusercontent.com/meowsaytounge/Docker-LlaraveLlama/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/Better-Call-Jason/Docker-LlaraveLlama/master/docker-compose.yml
 ```
 
 4. Start the application:
