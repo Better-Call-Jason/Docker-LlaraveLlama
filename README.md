@@ -25,6 +25,7 @@ All the amazing features of LlaraveLlama, now with the added benefits of Docker:
 ## 🚀 Quick Start
 
 1. Install Docker and Docker Compose on your system
+- the utilities directory has a docker_setup.sh script and a nvidia_setup.sh script that can help you out.
 2. Create a new directory for your project:
 ```bash
 mkdir llaravellama && cd llaravellama
@@ -119,7 +120,7 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 
 ## 📜 License
 
-Docker-LlaraveLlama is open-source software licensed under the MIT license.
+LlaraveLlama is open-source software licensed under the [MIT license](LICENSE). See the [LICENSE](LICENSE) file for the full license text.
 
 ## 🔗 Related Projects
 
