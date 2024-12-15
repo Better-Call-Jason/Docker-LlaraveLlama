@@ -34,93 +34,66 @@ Tested Platforms:
 - macOS
 - Windows with WSL2
 
-## 🚀 Installation Options
+## 🚀 Installation Guide
 
-### 1. Prerequisites Setup
+### 1. Clone the Repository
 
-We provide two utility scripts to help you get started:
+First, clone the repository to get access to all necessary files and utilities:
 
-- `utilities/setup_docker.sh`: Installs and configures Docker and Docker Compose
-- `utilities/setup_nvidia.sh`: Installs and configures NVIDIA drivers (required for GPU version only)
+```bash
+git clone https://github.com/Better-Call-Jason/Docker-LlaraveLlama.git
+cd Docker-LlaraveLlama
+```
 
-### 2. Choose Your Version
+### 2. Prerequisites Setup
+
+Use our utility scripts to set up your environment:
+
+#### A. Docker Installation
+If you don't have Docker installed:
+```bash
+chmod +x utilities/setup_docker.sh
+./utilities/setup_docker.sh
+```
+
+#### B. NVIDIA Setup (GPU Version Only)
+If you plan to use GPU acceleration:
+```bash
+chmod +x utilities/setup_nvidia.sh
+./utilities/setup_nvidia.sh
+
+# Verify GPU connection
+nvidia-smi
+```
+
+### 3. Choose Your Installation Method
 
 #### A. CPU Version (Default)
 Best for most users and general deployment:
 
 ```bash
-mkdir llaravellama
-```
-
-```bash
-cd llaravellama
-```
-
-```bash
-curl -O https://raw.githubusercontent.com/Better-Call-Jason/Docker-LlaraveLlama/master/docker-compose.yml
-```
-
-```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 #### B. GPU Version
 For users with NVIDIA GPUs who want accelerated inference:
 
-1. First, ensure NVIDIA drivers are properly installed:
 ```bash
-# Run our setup script if needed
-./utilities/setup_nvidia.sh
-```
-
-```bash
-# Verify GPU connection
-nvidia-smi
-```
-
-2. Deploy with GPU support:
-```bash
-mkdir llaravellama
-```
-
-```bash
-cd llaravellama
-```
-
-```bash
-curl -O https://raw.githubusercontent.com/Better-Call-Jason/Docker-LlaraveLlama/master/docker-compose.gpu.yml
-```
-
-```bash
-docker-compose -f docker-compose.gpu.yml up -d
+docker compose -f docker-compose.gpu.yml up -d
 ```
 
 #### C. Build From Source
 For users who want to customize their installation:
 
-```bash
-git clone https://github.com/Better-Call-Jason/Docker-LlaraveLlama.git
-```
-
-```bash
-cd Docker-LlaraveLlama
-```
-
 For CPU users:
 ```bash
 docker compose -f docker-compose.build.yml build
-```
-
-```bash
 docker compose -f docker-compose.build.yml up -d
 ```
 
 For GPU users:
 ```bash
 docker compose -f docker-compose.build.gpu.yml build
-```
-
-```bash
 docker compose -f docker-compose.build.gpu.yml up -d
 ```
 
@@ -151,11 +124,29 @@ environment:
 ### Debugging
 Enable debug mode by setting `APP_DEBUG=true` in your docker-compose.yml. The debug panel is fully responsive and works on mobile devices.
 
+# Docker-LlaraveLlama: Containerized Private AI Chat Suite
+
+[Previous sections remain the same until "Accessing the Application"]
+
 ## 📱 Accessing the Application
 
 - Local access: `http://localhost:8000`
 - Network access: `http://your_computer_ip_address:8000`
 - Mobile access: Ensure your device is on the same network and use `http://host_ip:8000`
+
+### First-Time Setup Note
+
+When you first launch the application, please note that the AI models will be pulled and initialized automatically. This process may take 1-2 minutes before the models appear in the UI. This is a one-time process for each model and subsequent launches will be much faster.
+
+During this initial setup:
+- The web interface will be accessible immediately
+- Models will appear in the model selection dropdown as they become available
+- You can monitor the download progress in the Docker logs using:
+```bash
+docker compose logs -f ollama
+```
+
+ 
 
 ## 🤝 Contributing
 
