@@ -55,6 +55,14 @@ RUN cp .env.example .env
 # Generate application key
 RUN php artisan key:generate
 
+# Copy scripts
+COPY docker/scripts/ /var/www/html/docker/scripts/
+
+# Then execute them
+RUN chmod +x docker/scripts/create_conversations.sh docker/scripts/create_assistants.sh && \
+    bash docker/scripts/create_conversations.sh && \
+    bash docker/scripts/create_assistants.sh
+
 # Create entrypoint script
 RUN echo '#!/bin/bash\n\
 set -e\n\

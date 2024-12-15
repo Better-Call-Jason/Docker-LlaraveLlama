@@ -91,13 +91,16 @@ If you want to build the images yourself:
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/meowsaytounge/Docker-LlaraveLlama.git
+git clone https://github.com/Better-Call-Jason/Docker-LlaraveLlama.git
 cd Docker-LlaraveLlama
 ```
 
-2. Build the images:
+2. Build and run the images:
 ```bash
-docker-compose -f docker-compose.build.yml build
+#build
+docker-compose -f docker compose.build.yml build
+#run
+docker compose -f docker-compose.build.yml up -d
 ```
 
 ## 📱 Mobile Access
