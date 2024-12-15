@@ -22,7 +22,7 @@ create_assistant() {
     else
         cat > "$DIR/$filename" << EOF
 {
-    "id": $timestamp,
+    "id": $COUNTER,
     "name": "$name",
     "prompt": "$prompt",
     "created_at": $timestamp

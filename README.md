@@ -95,10 +95,10 @@ git clone https://github.com/Better-Call-Jason/Docker-LlaraveLlama.git
 cd Docker-LlaraveLlama
 ```
 
-2. Build and run the images:
+2. Build and run the local images:
 ```bash
 #build
-docker-compose -f docker compose.build.yml build
+docker compose -f docker compose.build.yml build
 #run
 docker compose -f docker-compose.build.yml up -d
 ```
