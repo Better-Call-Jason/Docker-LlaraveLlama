@@ -7,15 +7,6 @@ services:
       - ollama-models:/root/.ollama
     environment:
       - OLLAMA_HOST=0.0.0.0
-      - NVIDIA_VISIBLE_DEVICES=all
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu, compute, utility]
-
   llaravellama:
     image: meowsaytounge/llaravellama:latest
     ports:
