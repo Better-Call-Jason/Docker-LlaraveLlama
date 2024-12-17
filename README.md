@@ -42,6 +42,8 @@ First, clone the repository to get access to all necessary files and utilities:
 
 ```bash
 git clone https://github.com/Better-Call-Jason/Docker-LlaraveLlama.git
+```
+```bash
 cd Docker-LlaraveLlama
 ```
 
@@ -52,16 +54,21 @@ Use our utility scripts to set up your environment:
 #### A. Docker Installation
 If you don't have Docker installed:
 ```bash
-chmod +x utilities/setup_docker.sh
-./utilities/setup_docker.sh
+chmod +x utilities/docker_setup.sh
+```
+```bash
+./utilities/docker_setup.sh
 ```
 
 #### B. NVIDIA Setup (GPU Version Only)
 If you plan to use GPU acceleration:
 ```bash
-chmod +x utilities/setup_nvidia.sh
-./utilities/setup_nvidia.sh
-
+chmod +x utilities/nvidia_setup.sh
+```
+```bash
+./utilities/nvidia_setup.sh
+```
+```bash
 # Verify GPU connection
 nvidia-smi
 ```
