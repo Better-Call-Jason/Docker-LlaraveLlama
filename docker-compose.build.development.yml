@@ -2,7 +2,7 @@ services:
   ollama:
     build:
       context: .
-      dockerfile: docker/Dockerfile.ollama.modals
+      dockerfile: docker/Dockerfile.ollama
     ports:
       - "11434:11434"
     volumes:
@@ -12,9 +12,9 @@ services:
   llaravellama:
     build:
       context: .
-      dockerfile: docker/Dockerfile.nginx
+      dockerfile: docker/Dockerfile.development
     ports:
-      - "80:80"
+      - "8000:8000"
     environment:
       - OLLAMA_HOST=ollama
       - OLLAMA_BASE_URL=http://ollama:11434

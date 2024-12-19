@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y \
     git \
     nano \
     sudo \
-    nginx \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js 20.x
@@ -19,12 +18,11 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g npm@latest
 
-# Add PHP repository and install PHP with FPM
+# Add PHP repository and install PHP
 RUN add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
     && apt-get install -y \
     php8.1 \
-    php8.1-fpm \
     php8.1-curl \
     php8.1-xml \
     php8.1-mbstring \
@@ -41,40 +39,9 @@ WORKDIR /var/www/html
 # Clone the repository (docker_build branch)
 RUN rm -rf * && git clone https://github.com/Better-Call-Jason/LlaraveLlama.git . && rm -rf .git
 
-# Create nginx configuration
-RUN echo 'server { \n\
-    listen 80; \n\
-    listen [::]:80; \n\
-    root /var/www/html/public; \n\
-    index index.php index.html; \n\
-    \n\
-    location / { \n\
-        try_files $uri $uri/ /index.php?$query_string; \n\
-    } \n\
-    \n\
-    location ~ \.php$ { \n\
-        fastcgi_split_path_info ^(.+\.php)(/.+)$; \n\
-        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock; \n\
-        fastcgi_index index.php; \n\
-        include fastcgi_params; \n\
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; \n\
-        fastcgi_param PATH_INFO $fastcgi_path_info; \n\
-    } \n\
-}' > /etc/nginx/sites-available/default \
-    && ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
-# Create necessary directories and set permissions
-RUN mkdir -p storage/app/data/conversations \
-    mkdir -p storage/app/data/assistants \
-    mkdir -p storage/json \
-    mkdir -p storage/framework/cache \
-    mkdir -p storage/framework/sessions \
-    mkdir -p storage/framework/views \
-    mkdir -p storage/logs \
-    && chown -R www-data:www-data /var/www/html \
-    && find /var/www/html/storage -type f -exec chmod 664 {} \; \
-    && find /var/www/html/storage -type d -exec chmod 775 {} \; \
-    && chmod -R 775 /var/www/html/bootstrap/cache
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage
 
 # Install PHP dependencies
 RUN composer install --no-interaction --no-dev --optimize-autoloader
@@ -82,13 +49,8 @@ RUN composer install --no-interaction --no-dev --optimize-autoloader
 # Install Node.js dependencies and build assets
 RUN npm install && npm run prod
 
-# Set up environment file
-RUN echo "Setting up environment file..." && \
-    cp .env.example .env && \
-    echo "OLLAMA_BASE_URL=http://ollama:11434" >> .env && \
-    echo "Environment file contents:" && \
-    cat .env | grep OLLAMA && \
-    echo "Environment setup complete"
+# Copy environment file
+RUN cp .env.example .env
 
 # Generate application key
 RUN php artisan key:generate
@@ -113,14 +75,11 @@ NC="\033[0m"\n\
 \n\
 echo -e "${YELLOW}Starting LlaraveLlama initialization...${NC}"\n\
 \n\
-# Start PHP-FPM\n\
-service php8.1-fpm start\n\
-\n\
-# Start Nginx\n\
-echo -e "${GREEN}Starting Nginx server...${NC}"\n\
-nginx -g "daemon off;"' > /usr/local/bin/docker-entrypoint.sh \
+# Start Laravel\n\
+echo -e "${GREEN}Starting Laravel server...${NC}"\n\
+php artisan serve --host=0.0.0.0 --port=8000' > /usr/local/bin/docker-entrypoint.sh \
     && chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 80
+EXPOSE 8000
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
