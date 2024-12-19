@@ -76,6 +76,9 @@ RUN mkdir -p storage/app/data/conversations \
     && find /var/www/html/storage -type d -exec chmod 775 {} \; \
     && chmod -R 775 /var/www/html/bootstrap/cache
 
+RUN chown -R www-data:www-data /var/www/html/storage/app/data \
+    && chmod -R 775 /var/www/html/storage/app/data
+
 # Install PHP dependencies
 RUN composer install --no-interaction --no-dev --optimize-autoloader
 

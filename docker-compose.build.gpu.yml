@@ -26,7 +26,11 @@ services:
     environment:
       - OLLAMA_HOST=ollama
       - OLLAMA_BASE_URL=http://ollama:11434
+    volumes:
+      - app-storage:/var/www/html/storage/app/data
     depends_on:
       - ollama
+
 volumes:
   ollama-models:
+  app-storage:
