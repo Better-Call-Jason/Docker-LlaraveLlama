@@ -2,6 +2,26 @@
 
 Welcome to Docker-LlaraveLlama - a containerized version of LlaraveLlama that makes deployment easier than ever. This Docker implementation brings all the power of LlaraveLlama with the convenience of containerization.
 
+## Table of Contents
+- [Preview](#-preview)
+- [Features](#-features)
+- [System Requirements](#-system-requirements)
+- [Installation Guide](#-installation-guide)
+  - [1. Clone the Repository](#1-clone-the-repository)
+  - [2. Prerequisites Setup](#2-prerequisites-setup)
+    - [A. Docker Installation](#a-docker-installation)
+    - [B. NVIDIA Setup](#b-nvidia-setup-gpu-version-only)
+  - [3. Choose Your Installation Method](#3-choose-your-installation-method)
+    - [A. CPU Version](#a-cpu-version-default)
+    - [B. GPU Version](#b-gpu-version)
+    - [C. Build From Source](#c-build-from-source)
+- [Components](#-components)
+- [Configuration](#-configuration)
+- [Accessing the Application](#-accessing-the-application)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Related Projects](#-related-projects)
+
 ## 📸 Preview
 
 <div align="center">
@@ -95,12 +115,16 @@ For users who want to customize their installation:
 For CPU users:
 ```bash
 docker compose -f docker-compose.build.yml build
+```
+```bash
 docker compose -f docker-compose.build.yml up -d
 ```
 
 For GPU users:
 ```bash
 docker compose -f docker-compose.build.gpu.yml build
+```
+```bash
 docker compose -f docker-compose.build.gpu.yml up -d
 ```
 
@@ -131,29 +155,12 @@ environment:
 ### Debugging
 Enable debug mode by setting `APP_DEBUG=true` in your docker-compose.yml. The debug panel is fully responsive and works on mobile devices.
 
-# Docker-LlaraveLlama: Containerized Private AI Chat Suite
-
-[Previous sections remain the same until "Accessing the Application"]
-
 ## 📱 Accessing the Application
 
-- Local access: `http://localhost:8000`
-- Network access: `http://your_computer_ip_address:8000`
-- Mobile access: Ensure your device is on the same network and use `http://host_ip:8000`
+- Local access: `http://localhost`
+- Network access: `http://your_computer_ip_address`
+- Mobile access: Ensure your device is on the same network or exposed to the internet : `http://host_ip`
 
-### First-Time Setup Note
-
-When you first launch the application, please note that the AI models will be pulled and initialized automatically. This process may take 1-2 minutes before the models appear in the UI. This is a one-time process for each model and subsequent launches will be much faster.
-
-During this initial setup:
-- The web interface will be accessible immediately
-- Models will appear in the model selection dropdown as they become available
-- You can monitor the download progress in the Docker logs using:
-```bash
-docker compose logs -f ollama
-```
-
- 
 
 ## 🤝 Contributing
 

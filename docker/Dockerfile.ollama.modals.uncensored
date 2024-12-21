@@ -1,0 +1,60 @@
+FROM ubuntu:22.04
+
+# Install curl and keep it installed
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Ollama from website
+RUN curl https://ollama.ai/install.sh | sh
+
+# Start Ollama server and pull models during build
+RUN ollama serve & \
+    echo "Waiting for Ollama server to start..." && \
+    while ! curl -s http://localhost:11434/api/version >/dev/null; do \
+        sleep 1; \
+    done && \
+    echo "Pulling llama3.2:3b..." && \
+    ollama pull llama3.2:3b && \
+    echo "Pulling gemma2:2b..." && \
+    ollama pull gemma2:2b && \
+    echo "Pulling qwen2.5:3b..." && \
+    ollama pull qwen2.5:3b && \
+    echo "All models pulled successfully" && \
+    mkdir -p /root/.ollama && \
+    pkill ollama
+
+# Create startup script that doesn't re-download models
+RUN echo '#!/bin/bash\n\
+\n\
+# Start Ollama server\n\
+echo "Starting Ollama server..."\n\
+ollama serve &\n\
+\n\
+# Wait for server to be ready\n\
+max_attempts=30\n\
+attempt=1\n\
+echo "Waiting for Ollama server to start..."\n\
+while [ $attempt -le $max_attempts ]; do\n\
+    if curl -s http://localhost:11434/api/version >/dev/null; then\n\
+        echo "Ollama server is ready"\n\
+        break\n\
+    fi\n\
+    echo "Attempt $attempt of $max_attempts - waiting for Ollama server..."\n\
+    sleep 2\n\
+    attempt=$((attempt + 1))\n\
+done\n\
+\n\
+if [ $attempt -gt $max_attempts ]; then\n\
+    echo "Failed to start Ollama server after $max_attempts attempts"\n\
+    exit 1\n\
+fi\n\
+\n\
+echo "Models already loaded in container, ready to use"\n\
+\n\
+# Keep the container running\n\
+wait' > /start.sh && chmod +x /start.sh
+
+EXPOSE 11434
+
+CMD ["/start.sh"]
