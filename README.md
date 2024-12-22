@@ -1,4 +1,8 @@
 # Docker-LlaraveLlama: Containerized Private AI Chat Suite
+![Stable](https://img.shields.io/badge/status-stable-green)
+[![Issues](https://img.shields.io/github/issues/Better-Call-Jason/LlaraveLlama)](https://github.com/Better-Call-Jason/LlaraveLlama/issues)
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+    <a href="https://hub.docker.com/r/meowsaytounge/llaravellama"><img src="https://img.shields.io/docker/pulls/meowsaytounge/llaravellama.svg" alt="Docker Pulls"></a>
 
 Welcome to Docker-LlaraveLlama - a containerized version of LlaraveLlama that makes deployment easier than ever. This Docker implementation brings all the power of LlaraveLlama with the convenience of containerization. Experience the power of LLaravelLama in action through our live demo, running efficiently on a minimal cloud setup in a docker container with just 4GB RAM and 2 CPU cores at : [Live Demo](http://demo.llaravellama.com)
 
@@ -29,8 +33,6 @@ Welcome to Docker-LlaraveLlama - a containerized version of LlaraveLlama that ma
     <br />
     <em>LlaraveLlama in action - showcasing features, themes and debug mode</em>
     <br />
-    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
-    <a href="https://hub.docker.com/r/meowsaytounge/llaravellama"><img src="https://img.shields.io/docker/pulls/meowsaytounge/llaravellama.svg" alt="Docker Pulls"></a>
 </div>
 
 ## ✨ Features
