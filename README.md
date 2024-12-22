@@ -1,6 +1,6 @@
 # Docker-LlaraveLlama: Containerized Private AI Chat Suite
 
-Welcome to Docker-LlaraveLlama - a containerized version of LlaraveLlama that makes deployment easier than ever. This Docker implementation brings all the power of LlaraveLlama with the convenience of containerization.
+Welcome to Docker-LlaraveLlama - a containerized version of LlaraveLlama that makes deployment easier than ever. This Docker implementation brings all the power of LlaraveLlama with the convenience of containerization. Experience the power of LLaravelLama in action through our live demo, running efficiently on a minimal cloud setup in a docker container with just 4GB RAM and 2 CPU cores at : [Live Demo](http://demo.llaravellama.com)
 
 ## Table of Contents
 - [Preview](#-preview)
