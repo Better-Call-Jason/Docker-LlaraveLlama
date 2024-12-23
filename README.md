@@ -1,10 +1,12 @@
-# Docker-LlaraveLlama: Containerized Private AI Chat Suite
+# Docker-LlaraveLlama: Private AI Chat Suite -- Docker Version
 ![Stable](https://img.shields.io/badge/status-stable-green)
 [![Issues](https://img.shields.io/github/issues/Better-Call-Jason/LlaraveLlama)](https://github.com/Better-Call-Jason/LlaraveLlama/issues)
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
     <a href="https://hub.docker.com/r/meowsaytounge/llaravellama"><img src="https://img.shields.io/docker/pulls/meowsaytounge/llaravellama.svg" alt="Docker Pulls"></a>
 
-Welcome to Docker-LlaraveLlama - a containerized version of LlaraveLlama that makes deployment easier than ever. This Docker implementation brings all the power of LlaraveLlama with the convenience of containerization. Experience the power of LLaravelLama in action through our live demo, running efficiently on a minimal cloud setup in a docker container with just 4GB RAM and 2 CPU cores at : [Live Demo](http://demo.llaravellama.com)
+Welcome to LlaraveLlama - the most user-friendly private AI chat suite that brings enterprise-grade AI to your local machine in under 3 minutes. By seamlessly combining Laravel's reliability with Ollama's AI capabilities, we've created a zero-configuration solution that gives you instant access to powerful AI models, complete with a polished interface and 20+ pre-configured AI assistants. Whether you're a privacy enthusiast, developer, or someone who wants their own private GPT-like experience without the technical hassle, LlaraveLlama delivers everything you need with just a single command.
+
+Experience the power of LlaraveLlama in action through our live demo, running efficiently on a minimal cloud setup with just 4GB RAM and 2 CPU cores at: [Live Demo](http://demo.llaravellama.com)
 
 ## Table of Contents
 - [Preview](#-preview)
