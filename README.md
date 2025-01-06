@@ -92,6 +92,10 @@ chmod +x utilities/nvidia_setup.sh
 ```bash
 ./utilities/nvidia_setup.sh
 ```
+After running the nvidia_setup.sh script, you'll need to reboot your system, the script will prompt you or you can :
+```bash
+sudo reboot
+```
 ```bash
 # Verify GPU connection
 nvidia-smi
