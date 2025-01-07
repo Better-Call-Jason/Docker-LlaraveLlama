@@ -23,6 +23,7 @@ Experience the power of LlaraveLlama in action through our live demo, running ef
     - [C. Build From Source](#c-build-from-source)
 - [Components](#-components)
 - [Configuration](#-configuration)
+- [To Add More Ollama Models](#to-add-more-ollama-models)
 - [Accessing the Application](#-accessing-the-application)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -85,20 +86,28 @@ chmod +x utilities/docker_setup.sh
 ```
 
 #### B. NVIDIA Setup (GPU Version Only)
-If you plan to use GPU acceleration:
+1. If you plan to use GPU acceleration:
 ```bash
 chmod +x utilities/nvidia_setup.sh
 ```
 ```bash
 ./utilities/nvidia_setup.sh
 ```
-After running the nvidia_setup.sh script, you'll need to reboot your system, the script will prompt you or you can :
+2. After running the nvidia_setup.sh script, you'll need to reboot your system, the script will prompt you just run :
 ```bash
 sudo reboot
 ```
+Once rebooted :
 ```bash
-# Verify GPU connection
+cd Docker-LlaraveLlama
+```
+3. Check the nvidia configuration:
+```bash
 nvidia-smi
+```
+4. To continually see operation of GPU in the background :
+```bash
+watch -n 1 nvidia-smi
 ```
 
 ### 3. Choose Your Installation Method
@@ -159,6 +168,80 @@ environment:
   - OLLAMA_BASE_URL=http://ollama:11434
   # Add any additional Laravel environment variables here
 ```
+
+### To Add More Ollama Models
+1. While the docker container is running, enter the project directory :
+```bash
+cd Docker-LlaraveLlama
+```
+2. Enter the Ollama docker container, with this command :
+```bash
+docker exec -it docker-llaravellama-ollama-1 bash
+```
+3. Run the Ollama command :
+```bash
+ollama
+```
+You should see output like this :
+```bash
+root@f03132f2eeaf:/# ollama
+Usage:
+  ollama [flags]
+  ollama [command]
+
+Available Commands:
+  serve       Start ollama
+  create      Create a model from a Modelfile
+  show        Show information for a model
+  run         Run a model
+  stop        Stop a running model
+  pull        Pull a model from a registry
+  push        Push a model to a registry
+  list        List models
+  ps          List running models
+  cp          Copy a model
+  rm          Remove a model
+  help        Help about any command
+
+Flags:
+  -h, --help      help for ollama
+  -v, --version   Show version information
+
+Use "ollama [command] --help" for more information about a command.
+```
+4. Utilize the Ollama Pull command to pull models from Ollama for example:
+```bash
+ollama pull codestral
+```
+```bash
+ ollama pull codellama:13b
+```
+The install output will look like this :
+```bash
+root@f03132f2eeaf:/# ollama pull codestral
+pulling manifest 
+pulling 22a849aafe3d... 100% ▕██████████████████████████████████████████████████████████████████▏  12 GB                         
+pulling 51707752a87c... 100% ▕██████████████████████████████████████████████████████████████████▏  480 B                         
+pulling 5b68668f65de... 100% ▕██████████████████████████████████████████████████████████████████▏  11 KB                         
+pulling 5dea4f4d0fff... 100% ▕██████████████████████████████████████████████████████████████████▏   63 B                         
+pulling 2be2362e38c7... 100% ▕██████████████████████████████████████████████████████████████████▏  486 B                         
+verifying sha256 digest 
+writing manifest 
+success 
+root@f03132f2eeaf:/# ollama pull  codellama:13b
+pulling manifest 
+pulling e73cc17c7181... 100% ▕██████████████████████████████████████████████████████████████████▏ 7.4 GB                         
+pulling 8c17c2ebb0ea... 100% ▕██████████████████████████████████████████████████████████████████▏ 7.0 KB                         
+pulling 590d74a5569b... 100% ▕██████████████████████████████████████████████████████████████████▏ 4.8 KB                         
+pulling 2e0493f67d0c... 100% ▕██████████████████████████████████████████████████████████████████▏   59 B                         
+pulling 7f6a57943a88... 100% ▕██████████████████████████████████████████████████████████████████▏  120 B                         
+pulling 35e261fb2c73... 100% ▕██████████████████████████████████████████████████████████████████▏  530 B                         
+verifying sha256 digest 
+writing manifest 
+success 
+```
+5. Exit the container or close the terminal. Now you can use these new models in your private LlaraveLlama instance, just refresh your browser page and the new models will appear in the list of available models. 
+   
 
 ### Debugging
 Enable debug mode by setting `APP_DEBUG=true` in your docker-compose.yml. The debug panel is fully responsive and works on mobile devices.
