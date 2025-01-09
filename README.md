@@ -6,7 +6,7 @@
 
 Welcome to LlaraveLlama - the most user-friendly private AI chat suite that brings enterprise-grade AI to your local machine in under 3 minutes. By seamlessly combining Laravel's reliability with Ollama's AI capabilities, we've created a zero-configuration solution that gives you instant access to powerful AI models, complete with a polished interface and 20+ pre-configured AI assistants. Whether you're a privacy enthusiast, developer, or someone who wants their own private GPT-like experience without the technical hassle, LlaraveLlama delivers everything you need with just a single command.
 
-Experience the power of LlaraveLlama in action through our live demo, running efficiently on a minimal cloud setup with just 4GB RAM and 2 CPU cores at: [Live Demo](http://demo.llaravellama.com)
+Experience the power of LlaraveLlama in action through our live demo, running efficiently on a minimal shared cloud setup with just 4GB RAM and 2 CPU cores at: [Live Demo](http://demo.llaravellama.com)
 
 ## Table of Contents
 - [Preview](#-preview)
